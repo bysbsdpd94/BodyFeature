@@ -34,13 +34,13 @@ print("|---Print Hand--------|")
 
 # print(pp.left_hand)
 
-img = cv.line(srcImage,(pp.left_hand.x,pp.left_hand.y),(pp.rignt_hand.x,pp.rignt_hand.y ),(255,0,0),5)
+# img = cv.line(srcImage,(pp.left_hand.x,pp.left_hand.y),(pp.rignt_hand.x,pp.rignt_hand.y ),(255,0,0),5)
 
 # print(pp.my_hand.my_right_hand)
 
 # 이미지 보이기
 cv.imshow('BodyFeature-Origin', srcImage) # 원본 이미지
-cv.imshow('BodyFeature', img) # 후처리 이미지
+# cv.imshow('BodyFeature', img) # 후처리 이미지
 cv.waitKey()
 
 

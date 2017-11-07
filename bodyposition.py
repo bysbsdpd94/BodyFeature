@@ -33,7 +33,7 @@ def GetBodyPosition(Dst):
     hand_tmp=h.GetHand(Dst)
     body.my_hand=hand_tmp
 
-    #다리에 대한 알고리즘이 작성되어야한다. 
+    #다리에 대한 알고리즘이 작성되어야한다.
     print("|--- 겨드랑이에 대한 알고리즘 입니다. ---------|")
     start_line=ap.find_armpit_start_line(0,0)
 
