@@ -16,4 +16,5 @@ img파일은 잘못 생성된 것이므로 무시
 <li>모든 알고리즘 완성 후 허리 찾는 waist 알고리즘 제작해보기</li>
 
 
+## <현재 연구 진행 상황>
 ![image](https://user-images.githubusercontent.com/26568793/32983393-236d4cf4-ccd7-11e7-837b-b32b3f1e0739.png)
