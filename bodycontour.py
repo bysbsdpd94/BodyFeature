@@ -8,7 +8,7 @@ import copy
 # 원본 이미지를 처리하여 윤곽선을 딴 이미지를 반환하는 메소드
 def getProcessedImage(srcImage):
     image = copy.copy(srcImage) # 매개변수로 받은 이미지 저장
-    print "image.shape", image.shape #이미지 셰이프 출력
+    print ("image.shape"), image.shape #이미지 셰이프 출력
 
     #r = 600.0 / image.shape[1]  # shape[0] 이미지 높이 600 픽셀에대한 비율
     #dim = (600, int(image.shape[0] * r))  # 차원 (600, 같은 비율로 이미지 너비 설정)

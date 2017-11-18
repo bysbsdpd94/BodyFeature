@@ -1,67 +1,84 @@
 # coding=utf-8
-# 중간점, 다리를 찾는 클래스
-
-import cv2
-import bodycontour as bc # 윤곽선을 구하는 기능
-import bodyposition as bp # 신체의 특정점들을 가져오는 기능
+import cv2 as cv
 import numpy as np
 import copy
 
-# 중간점, 양 다리 점
-class leftpoint:
+class livepoint:
     def __init__(self, x, y):
         self.x = x
         self.y = y
 
-class rightpoint:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
 
-class middlepoint:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
+def findThepoint(edge):
 
-# 중간점을 찾는 메소드드
-def getMiddlePoint(pcImage):
+    outImage = copy.copy(edge)  # 객체 복사하기
 
-    outImage = copy.copy(pcImage)  # 객체 복사하기
-    rowNumber = 700L
-    colNumber = 525L
+    rowNumber = 840L
+    colNumber = 641L
 
-    col_start = 0
-    col_end = colNumber - 1
+    # leftpoint,rightpoint, middlepoint 생성
 
-    row_start = 0
-    row_end = rowNumber - 1
+    leftpoint=livepoint(0,0)
+    rightpoint=livepoint(0,0)
+    middlepoint=livepoint(int(colNumber/2),rowNumber-1)
 
-    left_point = leftpoint(0, 0)
-    right_point = rightpoint(0, 0)
 
-    middle_point_X = int(colNumber/2)
-    middle_point_Y = rowNumber-1
-    middle_point = middlepoint(middle_point_X, middle_point_Y)
 
-    for i in range(rowNumber-1, 0, -1):
-        data_middle = outImage[i]
-        for j in range(col_start, col_end):
-            if np.any(data_middle[j]==[0, 255, 0]):
-                middle_point.x = i
+    print("|--- in findThepoint ---------|")
+    for i in (rowNumber-1,0,-1):
+        # 사진 배열을 data에 복사한다.
+        data = outImage[i]
 
-        count = 0
-        for j in range(1, 10):
-            if np.any(data_middle[j] == [0, 255, 0]):
-                count = count + 1
+        if 255 in data[middlepoint.x]:
+            middlepoint.y=i #처음 시작은 아까 초기값과 동일하게
+            count=0
+            for j in range(1,10):
+                if 255 in data[middlepoint.x-j]:
+                    count=count+1
 
-        if(count > 5):
-            left_point.x = middle_point.x
-            left_point.y = middle_point.y
+            if count >5:
+                leftpoint.x=middlepoint.x
+                leftpoint.y=middlepoint.y
 
-            for j in range(1, colNumber-1, 1):
-                if np.any(data_middle[j] == [0,255,0]):
-                    right_point.x = middle_point.x + j
-                    right_point.y = middle_point.y
-                    break
+                for j in range(1,colNumber):
+                    if 255 in data[middlepoint.x+j]:
+                        rightpoint.x=middlepoint.x+j
+                        rightpoint.y=middlepoint.y
+                        break
+            else:
+                rightpoint.x=middlepoint.x
+                rightpoint.y=middlepoint.y
 
-    return middle_point
+                # 무한 루프
+                while True:
+                    j = 1
+                    if 255 in data[middlepoint.x - j]:
+                        leftpoint.x = middlepoint.x - j
+                        leftpoint.y = middlepoint.y
+                        break
+                    j = j + 1
+
+            middlepoint.x = int((leftpoint.x + rightpoint.x) / 2)
+        else:
+            pass  # 여기의 역할을 모르겠음
+
+            # 다리의 분기점을 찾습니다.
+
+        if middlepoint.x == leftpoint.x or middlepoint.x == rightpoint.x:
+            break
+        else:
+            pass
+
+
+    dstpoint=livepoint(0,0)
+
+    dstpoint.x=middlepoint.x
+    dstpoint.y=middlepoint.y
+
+    print(dstpoint.x)
+    print (dstpoint.y)
+
+    return dstpoint
+
+
+
