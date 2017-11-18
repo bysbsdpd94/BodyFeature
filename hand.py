@@ -30,6 +30,7 @@ class hand:
 def GetHand(edge):
 
         outImage = copy.copy(edge)  # 객체 복사하기
+        #이미지의 ROWS와 COLS를 가져올 수 있는 방법을 알아봐야한다.
         rowNumber = 840L
         colNumber = 641L
 
@@ -49,6 +50,7 @@ def GetHand(edge):
         for i in range(0, colNumber):
             for j in range(row_start, row_end):
                 data_left = outImage[j]  # 주소를 얻는 것이라고 하는데 ... 공부를 해봐야할 것같음
+
                 if np.any(data_left[i] != 255):
                     print("|--- in LeftHand ---------|")
                     print(i)

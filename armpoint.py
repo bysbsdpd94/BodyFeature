@@ -135,39 +135,3 @@ def get_left_arm_point(edge,start_line):
     print("left_arm y:" + left_arm.y)
 
     return left_arm
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

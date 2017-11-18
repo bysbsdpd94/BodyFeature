@@ -1,7 +1,8 @@
 # coding=utf-8
 
 import hand as h
-import armpoint as ap
+import front_height as fh
+import middlepoint as mp
 from collections import namedtuple
 import numpy as np
 
@@ -13,13 +14,9 @@ import numpy as np
 
 class bodyp:
     my_hand=0
-    my_armpit=0
-
+    my_height=0
 
 def GetBodyPosition(Dst):
-
-    #몸에 대한 point를 담는 class
-    body=bodyp
 
     #아직 해당 인자가 어디서 사용되는지 파악을 하지 못했음
     # rowNumber=Dst.rows
@@ -29,22 +26,24 @@ def GetBodyPosition(Dst):
     # hand_tmp=h.hand
     print("|--- 손에 대한 알고리즘 입니다. ---------|")
 
-
     hand_tmp=h.GetHand(Dst)
-    body.my_hand=hand_tmp
+    my_hand=hand_tmp
 
-    #다리에 대한 알고리즘이 작성되어야한다.
-    print("|--- 겨드랑이에 대한 알고리즘 입니다. ---------|")
-    start_line=ap.find_armpit_start_line(0,0)
+    return my_hand
 
+def GetBodyPosition2(Dst):
+    print("|--- 키에 대한 알고리즘 입니다. ---------|")
+    height_tmp=fh.GetHeight(Dst)
+    my_height=height_tmp
 
+    return my_height
 
+def GetBodyPosition_middle(Dst):
+    print("|--- 중간점에 대한 알고리즘 입니다. ---------|")
+    middle_tmp=mp.findThepoint(Dst)
+    my_middle=middle_tmp
 
-
-
-
-
-
+    return my_middle
 
 
 
